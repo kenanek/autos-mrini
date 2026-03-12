@@ -22,5 +22,20 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 *.zip
+*.sql
+*.bak
 /vendor
 /storage/logs/*
+
+# Temporary/one-off scripts
+test_*.php
+generate_*.php
+upgrade_*.php
+build_*.php
+clean_*.php
+update_*.php
+apply_*.php
+debug_*.php
+temp_*.php
+mass_*.php
+backup_*
