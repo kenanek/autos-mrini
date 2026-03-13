@@ -30,8 +30,10 @@ class SettingController extends Controller
             $path = $request->file('logo')->store('settings', 'public');
             Setting::setVal('logo', $path);
             
-            // Copy explicitly to public path for shared hosting subfolder support
-            $publicDest = public_path('storage/' . $path);
+            // Check true public path based on the entry script for shared hosting
+            $truePublicDir = isset($_SERVER['SCRIPT_FILENAME']) ? dirname($_SERVER['SCRIPT_FILENAME']) : public_path();
+            $publicDest = rtrim($truePublicDir, '/') . '/storage/' . $path;
+            
             if (!file_exists(dirname($publicDest))) {
                 mkdir(dirname($publicDest), 0755, true);
             }
@@ -42,8 +44,10 @@ class SettingController extends Controller
             $path = $request->file('favicon')->store('settings', 'public');
             Setting::setVal('favicon', $path);
             
-            // Copy explicitly to public path for shared hosting subfolder support
-            $publicDest = public_path('storage/' . $path);
+            // Check true public path based on the entry script for shared hosting
+            $truePublicDir = isset($_SERVER['SCRIPT_FILENAME']) ? dirname($_SERVER['SCRIPT_FILENAME']) : public_path();
+            $publicDest = rtrim($truePublicDir, '/') . '/storage/' . $path;
+            
             if (!file_exists(dirname($publicDest))) {
                 mkdir(dirname($publicDest), 0755, true);
             }
