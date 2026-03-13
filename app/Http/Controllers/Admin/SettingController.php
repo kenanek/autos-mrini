@@ -29,11 +29,25 @@ class SettingController extends Controller
         if ($request->hasFile('logo')) {
             $path = $request->file('logo')->store('settings', 'public');
             Setting::setVal('logo', $path);
+            
+            // Copy explicitly to public path for shared hosting subfolder support
+            $publicDest = public_path('storage/' . $path);
+            if (!file_exists(dirname($publicDest))) {
+                mkdir(dirname($publicDest), 0755, true);
+            }
+            copy(storage_path('app/public/' . $path), $publicDest);
         }
 
         if ($request->hasFile('favicon')) {
             $path = $request->file('favicon')->store('settings', 'public');
             Setting::setVal('favicon', $path);
+            
+            // Copy explicitly to public path for shared hosting subfolder support
+            $publicDest = public_path('storage/' . $path);
+            if (!file_exists(dirname($publicDest))) {
+                mkdir(dirname($publicDest), 0755, true);
+            }
+            copy(storage_path('app/public/' . $path), $publicDest);
         }
 
         return back()->with('success', 'Configuración actualizada correctamente.');
