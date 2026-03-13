@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', \App\Models\Setting::getVal('default_meta_title', 'Autos Mrini - Concesionario Premium en Sevilla'))</title>
-    @if(\App\Models\Setting::getVal('favicon'))<link rel="icon" href="{{ \Illuminate\Support\Facades\Storage::url(\App\Models\Setting::getVal('favicon')) }}">@endif
+    @if(\App\Models\Setting::getVal('favicon'))<link rel="icon" href="{{ \Illuminate\Support\Facades\Storage::disk('public')->url(\App\Models\Setting::getVal('favicon')) }}">@endif
     <meta name="description" content="@yield('meta_description', \App\Models\Setting::getVal('default_meta_description', 'Encuentra vehículos premium, seminuevos y de ocasión con las mejores financiaciones.'))">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.min.css">
@@ -214,7 +214,7 @@
         <div class="container nav-wrapper">
             <a href="{{ route('home') }}" class="logo">
                 @if(\App\Models\Setting::getVal('logo'))
-                    <img src="{{ \Illuminate\Support\Facades\Storage::url(\App\Models\Setting::getVal('logo')) }}" alt="{{ \App\Models\Setting::getVal('site_name', 'Autos Mrini') }}" style="max-height: 100px;">
+                    <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url(\App\Models\Setting::getVal('logo')) }}" alt="{{ \App\Models\Setting::getVal('site_name', 'Autos Mrini') }}" style="max-height: 100px;">
                 @else
                     <div style="width:32px; height:32px; background: var(--accent); border-radius: 8px; display:flex; align-items:center; justify-content:center;">
                         <i class="icon-car" style="color:white; font-size:16px;"></i>
