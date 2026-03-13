@@ -93,14 +93,14 @@
                         <label class="form-label">Logo (Sube para reemplazar)</label>
                         <input type="file" name="logo" accept="image/*" style="width:100%; font-size: 14px; margin-top:8px;">
                         @if(\App\Models\Setting::getVal('logo'))
-                            <div style="margin-top:12px; padding:12px; background:#f8fafc; border-radius:8px; border:1px solid #e2e8f0; display:inline-block;"><img src="{{ asset('storage/' . \App\Models\Setting::getVal('logo')) }}" style="height:40px;"></div>
+                            <div style="margin-top:12px; padding:12px; background:#f8fafc; border-radius:8px; border:1px solid #e2e8f0; display:inline-block;"><img src="{{ \Illuminate\Support\Facades\Storage::url(\App\Models\Setting::getVal('logo')) }}" style="height:40px;"></div>
                         @endif
                     </div>
                     <div>
                         <label class="form-label">Favicon</label>
                         <input type="file" name="favicon" accept="image/*" style="width:100%; font-size: 14px; margin-top:8px;">
                         @if(\App\Models\Setting::getVal('favicon'))
-                            <div style="margin-top:12px; padding:8px; background:#f8fafc; border-radius:8px; border:1px solid #e2e8f0; display:inline-block;"><img src="{{ asset('storage/' . \App\Models\Setting::getVal('favicon')) }}" style="height:32px;"></div>
+                            <div style="margin-top:12px; padding:8px; background:#f8fafc; border-radius:8px; border:1px solid #e2e8f0; display:inline-block;"><img src="{{ \Illuminate\Support\Facades\Storage::url(\App\Models\Setting::getVal('favicon')) }}" style="height:32px;"></div>
                         @endif
                     </div>
                 </div>
